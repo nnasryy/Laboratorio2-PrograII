@@ -19,7 +19,7 @@ public abstract class Empleado {
     protected double salarioBase;
     protected int horasTrabajadas;
 
-    public Empleado(String codigo, String nombre, Calendar fecha, double salario, int horasTrabajadas, String foto) {
+    public Empleado(String codigo, String nombre, Calendar fecha, double salario, int horasTrabajadas) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.fechaContratacion = fecha;
@@ -27,8 +27,16 @@ public abstract class Empleado {
         this.horasTrabajadas = 0;
     }
 
+    public String getNombre(){
+        return this.nombre;
+    }
+    
     public String getCodigo(){
         return this.codigo;
+    }
+    
+    public double getSalarioBase(){
+        return this.salarioBase;
     }
     
     public void registrarHoras(int horas) {

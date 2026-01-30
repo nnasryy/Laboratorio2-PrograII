@@ -22,7 +22,6 @@ public class Empresa {
         this.mapaEmpleados = new HashMap<>();
     }
 
-    //Registrar Empleados
     public boolean registrarEmpleado(Empleado nuevo) {
         if (buscarEmpleadoCodigo(nuevo.getCodigo()) != null) {
             return false; 
@@ -32,12 +31,10 @@ public class Empresa {
         return true;
     }
 
-    //Agrega las tablas al gui
     public List<Empleado> obtenerListaParaTabla() {
         return new ArrayList<>(mapaEmpleados.values());
     }
     
-    //Registrar Horas Trabajadas
     public void registrarHoras(String codigo, int horas) {
         Empleado e = buscarEmpleadoCodigo(codigo);
         if (e != null) {
@@ -45,7 +42,6 @@ public class Empresa {
         }
     }
     
-    // Registrar Ventas (Solo para Empleados de Ventas
     public boolean registrarVenta(String codigo, double monto) {
         Empleado e = buscarEmpleadoCodigo(codigo);
         if (e instanceof EmpleadoVentas) {
@@ -55,7 +51,6 @@ public class Empresa {
         return false;
     }
     
-    // Actualizar Fecha de Fin de Contrato (Solo para Empleados Temporales)
     public boolean actualizarFinContrato(String codigo, Calendar nuevaFecha) {
         Empleado e = buscarEmpleadoCodigo(codigo);
         if (e instanceof EmpleadoTemporal) {
@@ -65,20 +60,21 @@ public class Empresa {
         return false;
     }
     
-    // Calcular Pago Mensual
     public double obtenerPagoMensual(String codigo) {
-        Empleado e = buscarEmpleadoCodigo(codigo);
-        return (e != null) ? e.calcularPago() : 0.0;
+    Empleado e = buscarEmpleadoCodigo(codigo);
+    if (e != null) {
+        return e.calcularPago(); 
+        }
+    return 0.0;
     }
     
-    // Generar Reportes de Empleados
     public String generarReporte() {
-    String reporte = "=== REPORTE DE EMPLEADOS ===\n";
+    String reporte = " Reporte de los empleados \n";
     
     int estandar = 0, temporal = 0, ventas = 0;
 
     for (Empleado e : mapaEmpleados.values()) {
-        reporte = reporte + e.mostrarInfo() + " | Pago: $" + e.calcularPago() + "\n";
+        reporte = reporte + e.mostrarInfo() + " | Pago: Lps." + e.calcularPago() + "\n";
         
         if (e instanceof EmpleadoVentas) {
             ventas++;
@@ -89,7 +85,7 @@ public class Empresa {
         }
     }
 
-    reporte = reporte + "\nTOTALES POR TIPO:\n";
+    reporte = reporte + "\nTotales por tipos de empleados: \n";
     reporte = reporte + "Estándar: " + estandar + "\n";
     reporte = reporte + "Temporales: " + temporal + "\n";
     reporte = reporte + "Ventas: " + ventas + "\n";
@@ -97,7 +93,6 @@ public class Empresa {
     return reporte;
     }
     
-    //Buscar Empleados por Código
     public Empleado buscarEmpleadoCodigo(String codigo) {
         return mapaEmpleados.get(codigo);
     }

@@ -12,7 +12,7 @@ public class EmpleadoTemporal extends Empleado {
 
     public EmpleadoTemporal(String codigo, String nombre, Calendar fechaContratacion,
             double salarioBase, int horasTrabajadas, Calendar fechaFinContrato) {
-        super(codigo, nombre, fechaContratacion, salarioBase, horasTrabajadas, null);
+        super(codigo, nombre, fechaContratacion, salarioBase, horasTrabajadas);
         this.fechaFinContrato = fechaFinContrato;
     }
 

@@ -7,11 +7,12 @@ package lab2_prograii;
 import java.util.Calendar;
 
 public class EmpleadoVentas extends Empleado {
+    
     private double[] ventasMensuales;
     private double tasaComision;
 
     public EmpleadoVentas(String codigo, String nombre, Calendar fechaContratacion, double salarioBase, int horasTrabajadas, double tasaComision) {
-        super(codigo, nombre, fechaContratacion, salarioBase, horasTrabajadas, null);
+        super(codigo, nombre, fechaContratacion, salarioBase, horasTrabajadas);
         this.tasaComision = tasaComision;
         this.ventasMensuales = new double[12];
     }
