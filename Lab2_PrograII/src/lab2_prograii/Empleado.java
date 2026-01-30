@@ -27,6 +27,10 @@ public abstract class Empleado {
         this.horasTrabajadas = 0;
     }
 
+    public String getCodigo(){
+        return this.codigo;
+    }
+    
     public void registrarHoras(int horas) {
         this.horasTrabajadas = horas;
     }
