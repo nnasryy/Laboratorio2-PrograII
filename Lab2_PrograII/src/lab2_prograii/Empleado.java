@@ -19,7 +19,7 @@ public abstract class Empleado {
     protected Date fechaContratacion;
     protected double salarioBase;
     protected int horasTrabajadas;
-    protected String rutaFoto;
+  
 
     //Atributos
     public Empleado(String codigo, String nombre, Date fecha, double salario, int horasTrabajadas, String foto) {
@@ -28,7 +28,7 @@ public abstract class Empleado {
         this.fechaContratacion = fecha;
         this.salarioBase = salario;
         this.horasTrabajadas = 0;
-        this.rutaFoto = foto;
+
     }
     
     //setter
@@ -38,7 +38,7 @@ public abstract class Empleado {
     
     public abstract double calcularPago();
     
-    public String mostarInfo(){
+    public String mostrarInfo(){
         return "ID: " + codigo + " | Nombre: " + nombre + " | Fecha: " + 
                 new SimpleDateFormat("dd/MM/yyyy").format(fechaContratacion);
     }
