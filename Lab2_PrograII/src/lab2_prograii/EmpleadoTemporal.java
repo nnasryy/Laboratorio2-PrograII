@@ -3,46 +3,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package lab2_prograii;
-
+import java.util.Calendar;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class EmpleadoTemporal extends Empleado {
 
-    private Date fechaFinContrato;
+    private Calendar fechaFinContrato;
 
-    public EmpleadoTemporal(String codigo, String nombre, Date fechaContratacion,
-            double salarioBase, int horasTrabajadas, Date fechaFinContrato) {
+    public EmpleadoTemporal(String codigo, String nombre, Calendar fechaContratacion,
+            double salarioBase, int horasTrabajadas, Calendar fechaFinContrato) {
         super(codigo, nombre, fechaContratacion, salarioBase, horasTrabajadas, null);
-        this.fechaContratacion = fechaFinContrato;
-  }
+        this.fechaFinContrato = fechaFinContrato;
+    }
 
-    public Date getFechaFinContrato(){
-    return fechaFinContrato;
+    public Calendar getFechaFinContrato() {
+        return fechaFinContrato;
     }
-    
-    public void actualizarFechaFinContraro(Date nuevaFecha){
-    this.fechaFinContrato = nuevaFecha;
-    }
-   
-    
-    @Override
-    public double calcularPago(){
-    Date fechaActual = new Date();
-    
-    if(fechaActual.after(fechaFinContrato)){
-    return 0.0;
-    }
-    return (salarioBase/160) * horasTrabajadas;
+
+    public void actualizarFechaFinContraro(Calendar nuevaFecha) {
+        this.fechaFinContrato = nuevaFecha;
     }
 
     @Override
-    public String mostrarInfo(){
-    return super.mostrarInfo()
-             + " | Tipo: Empleado Temporal"
+    public double calcularPago() {
+        Calendar fechaActual = Calendar.getInstance();
+
+        if (fechaActual.after(fechaFinContrato)) {
+            return 0.0;
+        }
+        return (salarioBase / 160) * horasTrabajadas;
+    }
+
+    @Override
+    public String mostrarInfo() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return super.mostrarInfo()
+                + " | Tipo: Empleado Temporal"
                 + " | Fin contrato: "
-                + new SimpleDateFormat("dd/MM/yyyy").format(fechaFinContrato);
+                + sdf.format(fechaFinContrato.getTime());
     }
-    
-    
 }

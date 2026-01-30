@@ -5,43 +5,36 @@
 package lab2_prograii;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
+
 
 /**
  *
  * @author nasry
  */
 public abstract class Empleado {
-    
-    //Atributos
-    protected String codigo;
+  protected String codigo;
     protected String nombre;
-    protected Date fechaContratacion;
+    protected Calendar fechaContratacion;
     protected double salarioBase;
     protected int horasTrabajadas;
-  
 
-    //Atributos
-    public Empleado(String codigo, String nombre, Date fecha, double salario, int horasTrabajadas, String foto) {
+    public Empleado(String codigo, String nombre, Calendar fecha, double salario, int horasTrabajadas, String foto) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.fechaContratacion = fecha;
         this.salarioBase = salario;
         this.horasTrabajadas = 0;
+    }
 
+    public void registrarHoras(int horas) {
+        this.horasTrabajadas = horas;
     }
-    
-    //setter
-    public void registrarHoras(int horas){
-        this.horasTrabajadas=horas;
-    }
-    
+
     public abstract double calcularPago();
-    
-    public String mostrarInfo(){
-        return "ID: " + codigo + " | Nombre: " + nombre + " | Fecha: " + 
-                new SimpleDateFormat("dd/MM/yyyy").format(fechaContratacion);
+
+    public String mostrarInfo() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return "ID: " + codigo + " | Nombre: " + nombre + " | Fecha: " + sdf.format(fechaContratacion.getTime());
     }
-    
-    
 }

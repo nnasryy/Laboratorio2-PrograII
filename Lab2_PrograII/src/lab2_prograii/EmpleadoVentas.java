@@ -4,10 +4,47 @@
  */
 package lab2_prograii;
 
-/**
- *
- * @author nasry
- */
-public class EmpleadoVentas {
-    
+import java.util.Calendar;
+
+public class EmpleadoVentas extends Empleado {
+    private double[] ventasMensuales;
+    private double tasaComision;
+
+    public EmpleadoVentas(String codigo, String nombre, Calendar fechaContratacion, double salarioBase, int horasTrabajadas, double tasaComision) {
+        super(codigo, nombre, fechaContratacion, salarioBase, horasTrabajadas, null);
+        this.tasaComision = tasaComision;
+        this.ventasMensuales = new double[12];
+    }
+
+    public void registrarVenta(double monto) {
+        int mesActual = Calendar.getInstance().get(Calendar.MONTH);
+        ventasMensuales[mesActual] += monto;
+    }
+
+    public double calcularComisionMesActual() {
+        int mesActual = Calendar.getInstance().get(Calendar.MONTH);
+        return ventasMensuales[mesActual] * tasaComision;
+    }
+
+    @Override
+    public double calcularPago() {
+        double salarioProporcional = (salarioBase / 160) * horasTrabajadas;
+        return salarioProporcional + calcularComisionMesActual();
+    }
+
+    public double calcularVentasAnuales() {
+        double total = 0;
+        for (double venta : ventasMensuales) {
+            total += venta;
+        }
+        return total;
+    }
+
+    @Override
+    public String mostrarInfo() {
+        return super.mostrarInfo()
+                + " | Tipo: Empleado Ventas"
+                + " | Ventas Anuales: L "
+                + String.format("%.2f", calcularVentasAnuales());
+    }
 }
